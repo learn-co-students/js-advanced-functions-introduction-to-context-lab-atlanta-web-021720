@@ -62,20 +62,13 @@ function allWagesFor(record) {
 }
 
 function findEmployeeByFirstName(arr, fName) {
-    arr.forEach(record => {
-        if (record.firstName === fName) {
-            // console.log(`findEmployeeByFirstName output: ${record}`)
-            return record
-        }
-    })
+    let returnArr = [...arr]
+    return returnArr.find(record => record.firstName === fName)
 }
 
 function calculatePayroll(employeeArr) {
-    let payroll = 0
     // console.log(employeeArr)
-    employeeArr.forEach(record => {
-        payroll += allWagesFor(record);
-    })
-    return payroll
+    let totaler = (acc, record) => acc + allWagesFor(record)
+    return employeeArr.reduce(totaler, 0)
 }
 
